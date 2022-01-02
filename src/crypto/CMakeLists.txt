@@ -1,0 +1,12 @@
+
+add_library(OGF28 OBJECT GF/GF28.cpp GF/GF28.h)
+add_library(OAESNI OBJECT AES/AES128_ni.cpp AES/AES128_ni.h)
+
+add_library(GF28 STATIC $<TARGET_OBJECTS:OGF28>)
+
+add_library(AESNI STATIC $<TARGET_OBJECTS:OAESNI>)
+
+add_library(WEM2EM STATIC WEM/WEM_2EM.hpp $<TARGET_OBJECTS:OAESNI>)
+
+add_library(COMPONENT STATIC utils/component.cpp utils/component.h $<TARGET_OBJECTS:OAESNI> $<TARGET_OBJECTS:OGF28>)
+
