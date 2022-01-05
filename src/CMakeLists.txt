@@ -11,10 +11,13 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LINKER_FLAGS}")
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
+find_package(OpenMP REQUIRED)
 
 add_subdirectory(crypto)
+add_subdirectory(3rd)
 
 include_directories(${CMAKE_CURRENT_LIST_DIR}/crypto)
+include_directories(${CMAKE_CURRENT_LIST_DIR}/3rd/z3/src/api/c++)
 
 add_executable(wem3 WEM3.cpp)
 target_link_libraries(wem3 WEM2EM GF28 COMPONENT)
@@ -27,4 +30,7 @@ target_link_libraries(bench1 COMPONENT)
 
 add_executable(bench2 bench2.cpp)
 target_link_libraries(bench2 COMPONENT)
+
+add_executable(supersbox supersbox.cpp)
+target_link_libraries(supersbox GF28 AESNI COMPONENT libz3)
 

@@ -1,8 +1,11 @@
 ```
+git clone https://github.com/Z3Prover/z3.git src/3rd/z3
+
 mkdir build
 
 cd build
 
+# should use clang
 CC=clang CXX=clang++ cmake ..
 
 make
@@ -18,5 +21,8 @@ make
 
 # bench of improved gaussian elimination
 ./bin/bench2
+
+# recover secret sbox from supersbox
+./bin/supersbox
 ```
 
